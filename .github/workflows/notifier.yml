@@ -1,0 +1,41 @@
+name: Calipokehouse eBay Notifier
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run notifier
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python notifier.py
+
+      - name: Commit updated state
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          if [[ -n "$(git status --porcelain state.json)" ]]; then
+            git add state.json
+            git commit -m "chore: update notifier state [skip ci]"
+            git push
+          else
+            echo "state.json unchanged"
+          fi
