@@ -1,6 +1,14 @@
 {
   "_comment": "Discord notification messages by day of week. Edit any message here to update what posts to Discord — no code changes needed.",
-  "_streamer": "Elijah (Fri/Sat/Sun on eBay)",
+  "_streamers": "Mon-Thu: Ruby (1 PM – 10 PM PST). Fri-Sun: Elijah (2 PM – 2 AM PST).",
+
+  "monday": "🚨 It's rip o'clock and Ruby is LIVE on eBay! 🎉 \n⚡ The week is just getting started and the pulls are already HITTING at Calipokehouse — From 1:00PM to 10:00PM PST, don't miss a single rip!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy",
+
+  "tuesday": "🚨 It's Tuesday and Ruby is LIVE and RIPPING on eBay! 🎉 \n⚡ We're back at it — From 1:00PM to 10:00PM PST, Calipokehouse is ripping and the energy is UP and the pulls are coming in hot!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy",
+
+  "wednesday": "🚨 Ruby is LIVE and the rips are non-stop on eBay! 🎉 \n⚡ We're back at it — From 1:00PM to 10:00PM PST, the packs don't stop and neither do the pulls at Calipokehouse — get in here!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy",
+
+  "thursday": "🚨 Ruby is LIVE on eBay and the rips are going strong! 🎉 \n⚡ From 1:00PM to 10:00PM PST, Calipokehouse keeps the energy up all week long — get in here before you miss a hit!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy",
 
   "friday": "🚨 It's Friday and Elijah is LIVE on eBay! 🎉 \n⚡ The weekend rips are HERE — From 2:00PM to 2:00AM PST, Calipokehouse is going all night long and the pulls are just getting started!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy",
 

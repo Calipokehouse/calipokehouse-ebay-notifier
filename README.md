@@ -15,11 +15,15 @@ Every 15 minutes (via cron-job.org pinging GitHub's workflow_dispatch API), the 
 
 ## Schedule
 
-| Day | Time (PST) | Streamer |
-|---|---|---|
-| Friday | 2:00 PM | Elijah |
-| Saturday | 2:00 PM | Elijah |
-| Sunday | 2:00 PM | Elijah |
+| Day | Time (PST) | Stream hours | Streamer |
+|---|---|---|---|
+| Monday | 1:00 PM | 1:00 PM – 10:00 PM | Ruby |
+| Tuesday | 1:00 PM | 1:00 PM – 10:00 PM | Ruby |
+| Wednesday | 1:00 PM | 1:00 PM – 10:00 PM | Ruby |
+| Thursday | 1:00 PM | 1:00 PM – 10:00 PM | Ruby |
+| Friday | 2:00 PM | 2:00 PM – 2:00 AM | Elijah |
+| Saturday | 2:00 PM | 2:00 PM – 2:00 AM | Elijah |
+| Sunday | 2:00 PM | 2:00 PM – 2:00 AM | Elijah |
 
 Stream URL: https://www.ebay.com/ebaylive/sellers/neqbykuprsy
 
@@ -49,5 +53,5 @@ Settings → Actions → General → Workflow permissions → **Read and write p
 ## Maintenance
 
 - **Edit messages:** open `messages.json` on GitHub, hit the pencil, change text, commit. Next 15-min tick uses the new wording.
-- **Change days or time:** edit `schedule.json`. To add Monday at 3 PM, add `"monday": { "hour": 15, "minute": 0 }` plus a matching `"monday"` entry in `messages.json`.
+- **Change days or time:** edit `schedule.json`. To add a new day, add the day in lowercase with hour/minute, plus a matching entry in `messages.json`.
 - **Health check:** Actions tab should show green checkmarks roughly every 15 minutes via cron-job.org.
