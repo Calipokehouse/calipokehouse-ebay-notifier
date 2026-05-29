@@ -1,0 +1,9 @@
+{
+  "_comment": "Days and times the eBay notification should fire. Times are PST (America/Los_Angeles). fire_window_minutes is how long after the scheduled time the bot is still allowed to fire — gives slack for cron-job.org being a few minutes late.",
+  "fire_window_minutes": 30,
+  "days": {
+    "friday":   { "hour": 14, "minute": 0 },
+    "saturday": { "hour": 14, "minute": 0 },
+    "sunday":   { "hour": 14, "minute": 0 }
+  }
+}
