@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """
-Calipokehouse eBay → Discord notifier.
+Calipokehouse eBay -> Discord notifier.
 
-Time-based (no live detection): fires once per scheduled day, within a
-~30 minute window after the scheduled hour. Designed to be triggered by
-cron-job.org pinging GitHub Actions workflow_dispatch every 15 minutes.
+Time-based (no live detection): fires each scheduled shift once per calendar
+day, within a ~30 minute window after the scheduled hour. Designed to be
+triggered by cron-job.org pinging GitHub Actions workflow_dispatch every
+10-15 minutes.
 
-State is persisted in state.json (committed back to the repo by the
-workflow) so each day's notification only fires once.
+Multiple shifts per day are supported. Each shift has its own hour, minute,
+and shift_id. State tracks which shifts have already fired on which dates
+via keys of the form "<shift_id>-YYYY-MM-DD".
 """
 
 import json
@@ -49,10 +51,7 @@ def post_to_discord(webhook_url, message):
 
 
 def within_fire_window(now_pst, scheduled_hour, scheduled_minute, window_minutes):
-    """
-    True if now is between scheduled time and scheduled time + window_minutes
-    (on the same calendar day in PST).
-    """
+    """True if now is between scheduled time and scheduled time + window."""
     scheduled = now_pst.replace(
         hour=scheduled_hour,
         minute=scheduled_minute,
@@ -61,6 +60,28 @@ def within_fire_window(now_pst, scheduled_hour, scheduled_minute, window_minutes
     )
     window_end = scheduled + timedelta(minutes=window_minutes)
     return scheduled <= now_pst <= window_end
+
+
+def migrate_state(state):
+    """
+    Migrate legacy fired_dates (single-shift-per-day) into the new
+    fired_shift_ids format. Legacy Mon-Thu were Ruby; Fri-Sun were Elijah.
+    Safe to call repeatedly.
+    """
+    if "fired_dates" not in state:
+        return
+    old = state.pop("fired_dates")
+    fired = set(state.get("fired_shift_ids", []))
+    for date_str in old:
+        try:
+            y, m, d = [int(p) for p in date_str.split("-")]
+        except Exception:
+            continue
+        weekday = datetime(y, m, d).strftime("%A").lower()
+        legacy_shift = "elijah" if weekday in {"friday", "saturday", "sunday"} else "ruby"
+        fired.add(f"{legacy_shift}-{date_str}")
+    state["fired_shift_ids"] = sorted(fired)
+    print(f"[info] Migrated {len(old)} legacy fired_dates entries to fired_shift_ids.")
 
 
 def main():
@@ -73,55 +94,58 @@ def main():
     messages = load_json(MESSAGES_PATH)
     state = load_json(STATE_PATH)
 
+    migrate_state(state)
+
     now_pst = datetime.now(PST)
     today_str = now_pst.strftime("%Y-%m-%d")
-    weekday_name = now_pst.strftime("%A").lower()  # e.g. "friday"
+    weekday_name = now_pst.strftime("%A").lower()
 
     print(f"[info] Tick at {now_pst.isoformat()}")
     print(f"[info] weekday={weekday_name} date={today_str}")
 
-    # Update last_check regardless of outcome
     state["last_check"] = now_pst.isoformat()
 
-    # Is today a scheduled day?
-    day_cfg = schedule.get("days", {}).get(weekday_name)
-    if not day_cfg:
-        print(f"[info] No stream scheduled for {weekday_name}. Skipping.")
+    day_shifts = schedule.get("days", {}).get(weekday_name, [])
+    if not day_shifts:
+        print(f"[info] No shifts scheduled for {weekday_name}. Skipping.")
         save_json(STATE_PATH, state)
         return
 
-    # Is now within the fire window?
-    hour = day_cfg["hour"]
-    minute = day_cfg.get("minute", 0)
     window = schedule.get("fire_window_minutes", 30)
-    if not within_fire_window(now_pst, hour, minute, window):
-        print(
-            f"[info] Outside fire window ({hour:02d}:{minute:02d} PST + {window}min). "
-            f"Skipping."
-        )
-        save_json(STATE_PATH, state)
-        return
+    day_messages = messages.get(weekday_name, {})
+    fired_ids = state.setdefault("fired_shift_ids", [])
 
-    # Already fired today?
-    if today_str in state.get("fired_dates", []):
-        print(f"[info] Already fired for {today_str}. Skipping.")
-        save_json(STATE_PATH, state)
-        return
+    any_action = False
+    for shift in day_shifts:
+        hour = shift["hour"]
+        minute = shift.get("minute", 0)
+        shift_id = shift["shift_id"]
+        fired_key = f"{shift_id}-{today_str}"
 
-    # Look up message for this weekday
-    message = messages.get(weekday_name)
-    if not message:
-        print(f"[warn] No message defined for {weekday_name}. Skipping.")
-        save_json(STATE_PATH, state)
-        return
+        if fired_key in fired_ids:
+            print(f"[info] {shift_id}: already fired today ({fired_key}). Skipping.")
+            continue
 
-    # Fire it
-    sent_chars = post_to_discord(webhook_url, message)
-    print(f"[ok] Posted to Discord ({sent_chars} chars)")
+        if not within_fire_window(now_pst, hour, minute, window):
+            print(
+                f"[info] {shift_id}: outside fire window "
+                f"({hour:02d}:{minute:02d} PST + {window}min). Skipping."
+            )
+            continue
 
-    state.setdefault("fired_dates", []).append(today_str)
+        message = day_messages.get(shift_id)
+        if not message:
+            print(f"[warn] {shift_id}: no message defined for {weekday_name}. Skipping.")
+            continue
+
+        sent_chars = post_to_discord(webhook_url, message)
+        print(f"[ok] {shift_id}: posted to Discord ({sent_chars} chars)")
+        fired_ids.append(fired_key)
+        any_action = True
+
     save_json(STATE_PATH, state)
-    print(f"[info] Marked {today_str} as fired.")
+    if not any_action:
+        print("[info] Nothing fired this tick.")
     print("[info] Done.")
 
 
