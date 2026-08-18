@@ -1,30 +1,27 @@
 {
   "_comment": "Discord messages keyed by weekday and shift_id (matches schedule.json). Edit any message here to update what posts to Discord — no code changes needed. End times are intentionally omitted from all messages for streamer privacy/safety.",
-  "_streamers": "Mon-Thu 1 PM: Ruby. Fri-Sun 1 PM: Elijah. Fri-Sun 7 PM: Apollo (joins Elijah).",
+  "_streamers": "Mon-Thu 1 PM: Apollo. Fri-Sun 1 PM: Elijah.",
 
   "monday": {
-    "ruby": "🚨 It's rip o'clock and Ruby is LIVE on eBay! 🎉 \n⚡ The week is just getting started and the pulls are already HITTING at Calipokehouse — starting at 1:00PM PST, don't miss a single rip!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
+    "apollo": "🚨 It's rip o'clock and Apollo is LIVE on eBay! 🎉 \n⚡ The week is just getting started and the pulls are already HITTING at Calipokehouse — starting at 1:00PM PST, don't miss a single rip!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
   },
   "tuesday": {
-    "ruby": "🚨 It's Tuesday and Ruby is LIVE and RIPPING on eBay! 🎉 \n⚡ We're back at it — starting at 1:00PM PST, Calipokehouse is ripping and the energy is UP and the pulls are coming in hot!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
+    "apollo": "🚨 It's Tuesday and Apollo is LIVE and RIPPING on eBay! 🎉 \n⚡ We're back at it — starting at 1:00PM PST, Calipokehouse is ripping and the energy is UP and the pulls are coming in hot!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
   },
   "wednesday": {
-    "ruby": "🚨 Ruby is LIVE and the rips are non-stop on eBay! 🎉 \n⚡ We're back at it — starting at 1:00PM PST, the packs don't stop and neither do the pulls at Calipokehouse — get in here!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
+    "apollo": "🚨 Apollo is LIVE and the rips are non-stop on eBay! 🎉 \n⚡ We're back at it — starting at 1:00PM PST, the packs don't stop and neither do the pulls at Calipokehouse — get in here!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
   },
   "thursday": {
-    "ruby": "🚨 Ruby is LIVE on eBay and the rips are going strong! 🎉 \n⚡ Starting at 1:00PM PST, Calipokehouse keeps the energy up all week long — get in here before you miss a hit!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
+    "apollo": "🚨 Apollo is LIVE on eBay and the rips are going strong! 🎉 \n⚡ Starting at 1:00PM PST, Calipokehouse keeps the energy up all week long — get in here before you miss a hit!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
   },
 
   "friday": {
-    "elijah": "🚨 It's Friday and Elijah is LIVE on eBay! 🎉 \n⚡ The weekend rips are HERE — starting at 1:00PM PST, Calipokehouse is going all afternoon and the pulls are just getting started!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy",
-    "apollo": "🌙 Apollo has joined Elijah on eBay — night shift is TAKING OVER! \n💫 Starting at 7:00PM PST, Apollo is keeping Calipokehouse going into the night with hits nonstop!⭐ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
+    "elijah": "🚨 It's Friday and Elijah is LIVE on eBay! 🎉 \n⚡ The weekend rips are HERE — starting at 1:00PM PST, Calipokehouse is going all afternoon and the pulls are just getting started!✨ \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
   },
   "saturday": {
-    "elijah": "🚨 Elijah is LIVE and the weekend is in full swing on eBay! 🎉 \n🎯 Saturday means we're ripping ALL day — starting at 1:00PM PST, Calipokehouse doesn't stop and neither should you!💥 \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy",
-    "apollo": "🌠 Apollo has joined Elijah on eBay — Saturday night is IN FULL EFFECT! \n🌌 Starting at 7:00PM PST, Apollo is keeping the late Calipokehouse rips coming for the night crew!💫 \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
+    "elijah": "🚨 Elijah is LIVE and the weekend is in full swing on eBay! 🎉 \n🎯 Saturday means we're ripping ALL day — starting at 1:00PM PST, Calipokehouse doesn't stop and neither should you!💥 \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
   },
   "sunday": {
-    "elijah": "🚨 Elijah is LIVE and sending the weekend off RIGHT on eBay! 🎉 \n🚀 One last day to catch some rips with Elijah — starting at 1:00PM PST, Calipokehouse is closing out the weekend strong!🎉 \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy",
-    "apollo": "🌌 Apollo has joined Elijah on eBay — closing the weekend out on the night shift! \n⚡ Starting at 7:00PM PST, Apollo is sending the weekend off strong for Calipokehouse!🌙 \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
+    "elijah": "🚨 Elijah is LIVE and sending the weekend off RIGHT on eBay! 🎉 \n🚀 One last day to catch some rips with Elijah — starting at 1:00PM PST, Calipokehouse is closing out the weekend strong!🎉 \n🔥 Watch LIVE: https://www.ebay.com/ebaylive/sellers/neqbykuprsy"
   }
 }
