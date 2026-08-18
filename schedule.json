@@ -1,23 +1,14 @@
 {
   "_comment": "Days and times the eBay notifications fire. Times are PST (America/Los_Angeles). Each weekday holds an ARRAY of shifts; each shift has hour, minute, and shift_id (which must match a key in messages.json[weekday]). fire_window_minutes is how long after the scheduled time the bot is still allowed to fire — gives slack for cron-job.org being a few minutes late.",
-  "_shifts": "Mon-Thu 1 PM: Ruby (day). Fri-Sun 1 PM: Elijah (day). Fri-Sun 7 PM: Apollo (night, joins Elijah).",
+  "_shifts": "Mon-Thu 1 PM: Apollo. Fri-Sun 1 PM: Elijah.",
   "fire_window_minutes": 30,
   "days": {
-    "monday":    [{"hour": 13, "minute": 0, "shift_id": "ruby"}],
-    "tuesday":   [{"hour": 13, "minute": 0, "shift_id": "ruby"}],
-    "wednesday": [{"hour": 13, "minute": 0, "shift_id": "ruby"}],
-    "thursday":  [{"hour": 13, "minute": 0, "shift_id": "ruby"}],
-    "friday": [
-      {"hour": 13, "minute": 0, "shift_id": "elijah"},
-      {"hour": 19, "minute": 0, "shift_id": "apollo"}
-    ],
-    "saturday": [
-      {"hour": 13, "minute": 0, "shift_id": "elijah"},
-      {"hour": 19, "minute": 0, "shift_id": "apollo"}
-    ],
-    "sunday": [
-      {"hour": 13, "minute": 0, "shift_id": "elijah"},
-      {"hour": 19, "minute": 0, "shift_id": "apollo"}
-    ]
+    "monday":    [{"hour": 13, "minute": 0, "shift_id": "apollo"}],
+    "tuesday":   [{"hour": 13, "minute": 0, "shift_id": "apollo"}],
+    "wednesday": [{"hour": 13, "minute": 0, "shift_id": "apollo"}],
+    "thursday":  [{"hour": 13, "minute": 0, "shift_id": "apollo"}],
+    "friday":    [{"hour": 13, "minute": 0, "shift_id": "elijah"}],
+    "saturday":  [{"hour": 13, "minute": 0, "shift_id": "elijah"}],
+    "sunday":    [{"hour": 13, "minute": 0, "shift_id": "elijah"}]
   }
 }
